@@ -1,0 +1,24 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: myvirtualservice
+  namespace: insidemesh
+spec:
+  hosts:
+  - "google.com"
+  gateways:
+  - mesh
+  - insidemesh/my-gateway
+  http:
+  - name: google-mocked-route 
+    match:
+    - headers:
+        x-my-custom-header:
+          exact: "my-custom-value"
+    route:
+    - destination:
+        host: hello.insidemesh.svc.cluster.local
+  - name: google-regular-route 
+    route:
+    - destination:
+        host: google.com

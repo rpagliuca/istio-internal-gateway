@@ -1,6 +1,6 @@
 First, exec into the curl pod:
 
-    kubectl exec -ti -n outsidemesh $(kubectl get pod -n insidemesh -l app=curl -o name) sh
+    kubectl exec -ti -n outsidemesh $(kubectl get pod -n outsidemesh -l app=curl -o name) sh
 
 Then run the following experiments from within the pod:
 
